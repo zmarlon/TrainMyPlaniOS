@@ -12,7 +12,7 @@ struct EditableExerciseView: View {
     
     var body: some View {
         VStack {
-            Text("\(exercise.name) (\(exercise.repetitions.lowerBound):\(exercise.repetitions.upperBound))")
+            Text("\(exercise.name) \(exercise.sets)x \(exercise.repetitions.lowerBound)-\(exercise.repetitions.upperBound)")
         }
     }
 }

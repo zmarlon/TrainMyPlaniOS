@@ -65,14 +65,14 @@ class WorkoutStore: ObservableObject, Codable {
         self.workouts = []
         
         addWorkout(workout: Workout(name: "Brust", exercises: [
-            Exercise(name: "Bankdrücken", repetitions: 8...12),
-            Exercise(name: "Butterfly", repetitions: 8...12),
-            Exercise(name: "Bankdrücken Maschine", repetitions: 8...12)
+            Exercise(name: "Bankdrücken", repetitions: 8...12, sets: 2, comment: ""),
+            Exercise(name: "Butterfly", repetitions: 8...12, sets: 2, comment: ""),
+            Exercise(name: "Bankdrücken Maschine", repetitions: 8...12, sets: 2, comment: "")
         ]))
         
         addWorkout(workout: Workout(name: "Rücken", exercises: [
-            Exercise(name: "Rudern", repetitions: 8...12),
-            Exercise(name: "Rudern Kurzhantel", repetitions: 6...8)
+            Exercise(name: "Rudern", repetitions: 8...12, sets: 2, comment: ""),
+            Exercise(name: "Rudern Kurzhantel", repetitions: 6...8, sets: 2, comment: "")
         ]))
     }
 
@@ -135,13 +135,10 @@ class WorkoutStore: ObservableObject, Codable {
         return workoutStore
     }
     
-    static func save(store: WorkoutStore) async throws {
-        let task = Task {
-            let data = try JSONEncoder().encode(store)
-            let outfile = try Self.fileURL()
-            try data.write(to: outfile)
-        }
-        _ = try await task.value
+    static func save(store: WorkoutStore) throws {
+        let data = try JSONEncoder().encode(store)
+        let outfile = try Self.fileURL()
+        try data.write(to: outfile)
     }
     
     func setWorkouts(store: WorkoutStore) {

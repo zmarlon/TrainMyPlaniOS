@@ -6,34 +6,41 @@
 //
 
 import SwiftUI
+import UIKit
 
 @main
 struct TrainMyPlanApp: App {
     @StateObject private var workoutStore = WorkoutStore()
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     
     var body: some Scene {
         WindowGroup {
             ContentView(workoutStore: workoutStore)
                 .onAppear {
-                    print("ONENTER")
+                    appDelegate.workoutStore = workoutStore
                     Task {
                         do {
                             let loadedStore = try await WorkoutStore.load()
                             self.workoutStore.setWorkouts(store: loadedStore)
                         } catch {
-                            print("Fehler beim Laden der Daten: \(error)")
+                            print("Failed to load data \(error)")
                         }
                     }
                 }
-                .onDisappear {
-                    print("ONEXIT")
-                
-                    Task {
-                        do {
-                            try await WorkoutStore.save(store: workoutStore)
-                        }
-                    }
-                }
+        }
+    }
+}
+
+class AppDelegate: NSObject, UIApplicationDelegate {
+    var workoutStore: WorkoutStore?
+    
+    func applicationWillTerminate(_ application: UIApplication) {
+        if let store = workoutStore {
+            do {
+                try WorkoutStore.save(store: store)
+            }  catch {
+                print("Failed to save data \(error)")
+            }
         }
     }
 }

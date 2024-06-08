@@ -11,6 +11,8 @@ class Exercise: ObservableObject, Identifiable, Codable {
     var id = UUID()
     var name: String
     var repetitions: ClosedRange<Int>
+    var sets: Int
+    var comment: String
     
     weak var parent: WorkoutStore?
     
@@ -18,6 +20,8 @@ class Exercise: ObservableObject, Identifiable, Codable {
         case id
         case name
         case repetitions
+        case sets
+        case comment
     }
     
     func encode(to encoder: Encoder) throws {
@@ -25,6 +29,8 @@ class Exercise: ObservableObject, Identifiable, Codable {
         try container.encode(id, forKey: .id)
         try container.encode(name, forKey: .name)
         try container.encode([repetitions.lowerBound, repetitions.upperBound], forKey: .repetitions)
+        try container.encode(sets, forKey: .sets)
+        try container.encode(comment, forKey: .comment)
     }
     
     required init(from decoder: Decoder) throws {
@@ -33,11 +39,15 @@ class Exercise: ObservableObject, Identifiable, Codable {
         name = try container.decode(String.self, forKey: .name)
         let repsArray = try container.decode([Int].self, forKey: .repetitions)
         repetitions = repsArray[0]...repsArray[1]
+        sets = try container.decode(Int.self, forKey: .sets)
+        comment = try container.decode(String.self, forKey: .comment)
     }
     
-    init(name: String, repetitions: ClosedRange<Int>) {
+    init(name: String, repetitions: ClosedRange<Int>, sets: Int, comment: String) {
         self.name = name
         self.repetitions = repetitions
+        self.sets = sets
+        self.comment = comment
     }
     
     func setName(name: String) {
@@ -47,6 +57,16 @@ class Exercise: ObservableObject, Identifiable, Codable {
     
     func setRepetitions(min: String, max: String) {
         self.repetitions = Int(min)!...Int(max)!
+        parent?.objectWillChange.send()
+    }
+    
+    func setSets(sets: Int) {
+        self.sets = sets
+        parent?.objectWillChange.send()
+    }
+    
+    func setComment(comment: String) {
+        self.comment = comment
         parent?.objectWillChange.send()
     }
 }

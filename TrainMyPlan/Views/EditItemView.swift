@@ -27,6 +27,8 @@ struct EditItemView: View {
                     NavigationLink(destination: EditExerciseView(exercise: exercise)) {
                         EditableExerciseView(exercise: exercise)
                     }
+                }.onDelete { indexSet in
+                    workout.exercises.remove(atOffsets: indexSet)
                 }
             }
             
@@ -38,7 +40,7 @@ struct EditItemView: View {
     
     var addButton: some View {
             Button(action: {
-                workout.addExercise(newExercise: Exercise(name: "New Exercise", repetitions: 8...12))
+                workout.addExercise(newExercise: Exercise(name: "New Exercise", repetitions: 8...12, sets: 2, comment: ""))
             }) {
                 Image(systemName: "plus")
             }

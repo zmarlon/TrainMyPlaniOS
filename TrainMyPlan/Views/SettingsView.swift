@@ -43,17 +43,17 @@ struct SettingsView: View {
                         let loadedStore = try await WorkoutStore.load()
                         self.workoutStore.setWorkouts(store: loadedStore)
                     } catch {
-                        print("Fehler beim Laden der Daten: \(error)")
+                        print("Failed to load data: \(error)")
                     }
                 }
             }
             
             Button("Save") {
-                Task {
-                    do {
-                        try await WorkoutStore.save(store: workoutStore)
-                        showingSaveAlert = true
-                    }
+                do {
+                    try WorkoutStore.save(store: workoutStore)
+                    showingSaveAlert = true
+                } catch {
+                    print("Failed to save data: \(error)")
                 }
             }.alert("Saved", isPresented: $showingSaveAlert) {
                 Button("OK", role: .cancel) { }
