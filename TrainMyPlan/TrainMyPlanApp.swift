@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct TrainMyPlanApp: App {
+    @StateObject private var workoutStore = WorkoutStore()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(workoutStore: workoutStore)
         }
     }
 }

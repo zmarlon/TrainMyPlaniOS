@@ -24,6 +24,7 @@
 		27A27F292C135D7000DD0F76 /* EditExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27F282C135D7000DD0F76 /* EditExerciseView.swift */; };
 		27A27F2B2C135DB500DD0F76 /* EditableExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27F2A2C135DB500DD0F76 /* EditableExerciseView.swift */; };
 		27A27F302C143D2F00DD0F76 /* NumberTextInputField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27F2F2C143D2F00DD0F76 /* NumberTextInputField.swift */; };
+		27A27F322C14477600DD0F76 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27F312C14477600DD0F76 /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		27A27F282C135D7000DD0F76 /* EditExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditExerciseView.swift; sourceTree = "<group>"; };
 		27A27F2A2C135DB500DD0F76 /* EditableExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableExerciseView.swift; sourceTree = "<group>"; };
 		27A27F2F2C143D2F00DD0F76 /* NumberTextInputField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberTextInputField.swift; sourceTree = "<group>"; };
+		27A27F312C14477600DD0F76 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 				27A27F202C13558900DD0F76 /* EditItemView.swift */,
 				27A27F282C135D7000DD0F76 /* EditExerciseView.swift */,
 				27A27F2A2C135DB500DD0F76 /* EditableExerciseView.swift */,
+				27A27F312C14477600DD0F76 /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 				27A27F272C135C2000DD0F76 /* CenteredHeadline.swift in Sources */,
 				27A27F1A2C134ED500DD0F76 /* Exercise.swift in Sources */,
 				27A27F302C143D2F00DD0F76 /* NumberTextInputField.swift in Sources */,
+				27A27F322C14477600DD0F76 /* SettingsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

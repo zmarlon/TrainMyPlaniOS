@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject var workoutStore: WorkoutStore
+    
     var body: some View {
             TabView {
-                EditView()
+                EditView(workoutStore: workoutStore)
                     .tabItem {
                         Image(systemName: "square.and.pencil")
                         Text("Edit")
@@ -21,10 +23,12 @@ struct ContentView: View {
                         Image(systemName: "play.tv")
                         Text("Go")
                     }
+                
+                SettingsView(workoutStore: workoutStore)
+                    .tabItem {
+                        Image(systemName: "gearshape")
+                        Text("Settings")
+                    }
             }
         }
-}
-
-#Preview {
-    ContentView()
 }

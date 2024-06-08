@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct EditView: View {
-    @StateObject private var workoutStore = WorkoutStore()
+    @StateObject var workoutStore: WorkoutStore
     
     var body: some View {
         NavigationView {

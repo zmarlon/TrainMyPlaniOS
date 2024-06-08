@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-class Workout: ObservableObject, Identifiable {
-    let id = UUID()
+class Workout: ObservableObject, Identifiable, Codable {
+    var id = UUID()
     
     @Published var name: String
     @Published var exercises: [Exercise]
@@ -32,9 +32,33 @@ class Workout: ObservableObject, Identifiable {
         objectWillChange.send()
         parent?.objectWillChange.send()
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case exercises
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(name, forKey: .name)
+        try container.encode(exercises, forKey: .exercises)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        id = try container.decode(UUID.self, forKey: .id)
+        name = try container.decode(String.self, forKey: .name)
+        exercises = try container.decode([Exercise].self, forKey: .exercises)
+            
+        for exercise in exercises {
+            exercise.parent = parent
+        }
+    }
 }
 
-class WorkoutStore: ObservableObject {
+class WorkoutStore: ObservableObject, Codable {
     @Published var workouts: [Workout]
     
     init() {
@@ -67,5 +91,56 @@ class WorkoutStore: ObservableObject {
     func removeWorkout(at indexSet: IndexSet) {
         workouts.remove(atOffsets: indexSet)
         objectWillChange.send()
+    }
+    
+    enum CodingKeys: String, CodingKey {
+        case workouts
+    }
+        
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(workouts, forKey: .workouts)
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        workouts = try container.decode([Workout].self, forKey: .workouts)
+            
+        for workout in workouts {
+            workout.parent = self
+        }
+    }
+    
+    //Save behaviour
+    
+    private static func fileURL() throws -> URL {
+        try FileManager.default.url(for: .documentDirectory,
+                                        in: .userDomainMask,
+                                        appropriateFor: nil,
+                                        create: false)
+            .appendingPathComponent("trainmyplan.data")
+    }
+
+
+    static func load() async throws -> WorkoutStore {
+        let task = Task<WorkoutStore, Error> {
+            let fileURL = try Self.fileURL()
+            guard let data = try? Data(contentsOf: fileURL) else {
+                return WorkoutStore()
+            }
+            let workoutStore = try JSONDecoder().decode(WorkoutStore.self, from: data)
+            return workoutStore
+        }
+        let workoutStore = try await task.value
+        return workoutStore
+    }
+    
+    func save(store: WorkoutStore) async throws {
+        let task = Task {
+            let data = try JSONEncoder().encode(store)
+            let outfile = try Self.fileURL()
+            try data.write(to: outfile)
+        }
+        _ = try await task.value
     }
 }
