@@ -17,12 +17,16 @@ class Workout: ObservableObject, Identifiable {
     
     init(name: String, exercises: [Exercise], parent: WorkoutStore? = nil) {
         self.name = name
-        self.exercises = exercises
+        self.exercises = []
         self.parent = parent
+        
+        for exercise in exercises {
+            addExercise(newExercise: exercise)
+        }
     }
     
-    func addExercise() {
-        let newExercise = Exercise(name: "New Exercise", repetitions: 8...12)
+    func addExercise(newExercise: Exercise) {
+        newExercise.parent = parent
         exercises.append(newExercise)
         
         objectWillChange.send()
@@ -53,6 +57,11 @@ class WorkoutStore: ObservableObject {
         workout.parent = self
         workouts.append(workout)
         objectWillChange.send()
+        
+        //Set exercise parents
+        for exercise in workout.exercises {
+            exercise.parent = self
+        }
     }
     
     func removeWorkout(at indexSet: IndexSet) {

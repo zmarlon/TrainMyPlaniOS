@@ -28,20 +28,17 @@ struct EditItemView: View {
                         EditableExerciseView(exercise: exercise)
                     }
                 }
-                .onDelete { indexSet in
-                    workout.exercises.remove(atOffsets: indexSet)
-                }
             }
             
             Spacer()
         }
-        .navigationTitle(workout.name)
+        .navigationTitle("Edit workout")
         .navigationBarItems(trailing: addButton)
     }
     
     var addButton: some View {
             Button(action: {
-                workout.addExercise()
+                workout.addExercise(newExercise: Exercise(name: "New Exercise", repetitions: 8...12))
             }) {
                 Image(systemName: "plus")
             }
