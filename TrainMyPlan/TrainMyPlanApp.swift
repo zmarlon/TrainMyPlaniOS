@@ -14,6 +14,26 @@ struct TrainMyPlanApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(workoutStore: workoutStore)
+                .onAppear {
+                    print("ONENTER")
+                    Task {
+                        do {
+                            let loadedStore = try await WorkoutStore.load()
+                            self.workoutStore.setWorkouts(store: loadedStore)
+                        } catch {
+                            print("Fehler beim Laden der Daten: \(error)")
+                        }
+                    }
+                }
+                .onDisappear {
+                    print("ONEXIT")
+                
+                    Task {
+                        do {
+                            try await WorkoutStore.save(store: workoutStore)
+                        }
+                    }
+                }
         }
     }
 }

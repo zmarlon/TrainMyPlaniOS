@@ -135,12 +135,26 @@ class WorkoutStore: ObservableObject, Codable {
         return workoutStore
     }
     
-    func save(store: WorkoutStore) async throws {
+    static func save(store: WorkoutStore) async throws {
         let task = Task {
             let data = try JSONEncoder().encode(store)
             let outfile = try Self.fileURL()
             try data.write(to: outfile)
         }
         _ = try await task.value
+    }
+    
+    func setWorkouts(store: WorkoutStore) {
+        self.workouts = store.workouts
+        
+        for workout in self.workouts {
+            workout.parent = self
+            
+            for exercise in workout.exercises {
+                exercise.parent = self
+            }
+        }
+        
+        objectWillChange.send()
     }
 }
