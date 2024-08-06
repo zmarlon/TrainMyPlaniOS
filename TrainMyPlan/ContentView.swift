@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var workoutStore: WorkoutStore
+    @StateObject var workoutResultStore: WorkoutResultStore
     
     var body: some View {
             TabView {
@@ -18,7 +19,7 @@ struct ContentView: View {
                         Text("Edit")
                     }
                 
-                GoView()
+                GoView(workoutStore: workoutStore, workoutResultStore: workoutResultStore)
                     .tabItem {
                         Image(systemName: "play.tv")
                         Text("Go")

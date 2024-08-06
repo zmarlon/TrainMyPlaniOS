@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		274AEEF42C629DEF002175E1 /* GoWorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AEEF32C629DEC002175E1 /* GoWorkoutView.swift */; };
+		274AEEF62C629F2F002175E1 /* ExerciseResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274AEEF52C629F2C002175E1 /* ExerciseResult.swift */; };
+		2758D2B82C62A23F00669BFF /* WorkoutResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2758D2B72C62A23A00669BFF /* WorkoutResult.swift */; };
 		27A27EE72C134B6F00DD0F76 /* TrainMyPlanApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27EE62C134B6F00DD0F76 /* TrainMyPlanApp.swift */; };
 		27A27EE92C134B6F00DD0F76 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A27EE82C134B6F00DD0F76 /* ContentView.swift */; };
 		27A27EEB2C134B7000DD0F76 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27A27EEA2C134B7000DD0F76 /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		274AEEF32C629DEC002175E1 /* GoWorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoWorkoutView.swift; sourceTree = "<group>"; };
+		274AEEF52C629F2C002175E1 /* ExerciseResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExerciseResult.swift; sourceTree = "<group>"; };
+		2758D2B72C62A23A00669BFF /* WorkoutResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutResult.swift; sourceTree = "<group>"; };
 		27A27EE32C134B6F00DD0F76 /* TrainMyPlan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrainMyPlan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27A27EE62C134B6F00DD0F76 /* TrainMyPlanApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainMyPlanApp.swift; sourceTree = "<group>"; };
 		27A27EE82C134B6F00DD0F76 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -157,6 +163,7 @@
 		27A27F102C134C1200DD0F76 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				274AEEF32C629DEC002175E1 /* GoWorkoutView.swift */,
 				27A27F112C134C1C00DD0F76 /* EditView.swift */,
 				27A27F132C134C5600DD0F76 /* GoView.swift */,
 				27A27F1D2C13543500DD0F76 /* EditableItemView.swift */,
@@ -171,6 +178,8 @@
 		27A27F152C134E6500DD0F76 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2758D2B72C62A23A00669BFF /* WorkoutResult.swift */,
+				274AEEF52C629F2C002175E1 /* ExerciseResult.swift */,
 				27A27F162C134E7700DD0F76 /* Workout.swift */,
 				27A27F192C134ED500DD0F76 /* Exercise.swift */,
 			);
@@ -322,13 +331,16 @@
 				27A27F292C135D7000DD0F76 /* EditExerciseView.swift in Sources */,
 				27A27F2B2C135DB500DD0F76 /* EditableExerciseView.swift in Sources */,
 				27A27EE72C134B6F00DD0F76 /* TrainMyPlanApp.swift in Sources */,
+				2758D2B82C62A23F00669BFF /* WorkoutResult.swift in Sources */,
 				27A27F172C134E7700DD0F76 /* Workout.swift in Sources */,
+				274AEEF62C629F2F002175E1 /* ExerciseResult.swift in Sources */,
 				27A27F342C147EC100DD0F76 /* FloatNumberTextInputField.swift in Sources */,
 				27A27F122C134C1C00DD0F76 /* EditView.swift in Sources */,
 				27A27F212C13558900DD0F76 /* EditItemView.swift in Sources */,
 				27A27F1E2C13543500DD0F76 /* EditableItemView.swift in Sources */,
 				27A27F272C135C2000DD0F76 /* CenteredHeadline.swift in Sources */,
 				27A27F1A2C134ED500DD0F76 /* Exercise.swift in Sources */,
+				274AEEF42C629DEF002175E1 /* GoWorkoutView.swift in Sources */,
 				27A27F302C143D2F00DD0F76 /* NumberTextInputField.swift in Sources */,
 				27A27F322C14477600DD0F76 /* SettingsView.swift in Sources */,
 			);
@@ -494,6 +506,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainMyPlan/Preview Content\"";
+				DEVELOPMENT_TEAM = TZ846Y82KB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -522,6 +535,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"TrainMyPlan/Preview Content\"";
+				DEVELOPMENT_TEAM = TZ846Y82KB;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
